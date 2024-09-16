@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Website for paper SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model.">
+  <meta name="keywords" content="Rank2Reward">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GZKT4KP7DC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-B5QYBSWG1E');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/Robot-icon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js" defer></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://dxyang.github.io">Daniel Yang</a><sup>1, 2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://meche.mit.edu/people/faculty/JLEONARD@MIT.EDU">John J. Leonard</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.whoi.edu/profile/ygirdhar/">Yogesh Girdhar</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MIT CSAIL</span>,
+            <span class="author-block"><sup>2</sup>Woods Hole Oceanographic Institution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="./static/pdf/blah.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2409.17345"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=iU9JWIhw5kg"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/dxyang/seasplat/tree/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1gItZkfEFmXZzIRh5b6wXeWD6GappX-QN/view?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>SaltPond Data</span>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <video id="teaser" width="100%" playsinline controls autoplay loop muted>
+          <source src="./static/videos/teaser.mp4" type="video/mp4" />
+      </video>
+<script>
+  document.getElementById('teaser').play();
+</script>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"
+        class="full-width-image"
+        alt="Overview."/>
+      <h2 class="subtitle has-text-centered">
+        <span class="dmethod">SeaSplat</span> learns an underwater scene representation accounting for medium degradation effects by incorporating the <a href="https://ieeexplore.ieee.org/document/8578801">underwater image formation model</a> with 3D Gaussians.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce SeaSplat, a method to enable real-time rendering of underwater scenes leveraging recent
+            advances in 3D radiance fields.
+
+            Underwater scenes are challenging visual environments, as rendering through a medium such as water
+            introduces both range and color dependent effects on image capture.
+
+            We constrain 3D Gaussian Splatting (3DGS), a recent advance in radiance fields enabling rapid training
+            and real-time rendering of full 3D scenes, with a physically grounded underwater image formation model.
+
+            Applying SeaSplat to the real-world scenes from SeaThru-NeRF dataset, a scene collected by an underwater
+            vehicle in the US Virgin Islands, and simulation-degraded real-world scenes, not only do we see
+            increased quantitative performance on rendering novel viewpoints from the scene with the medium present,
+            but are also able to recover the underlying true color of the scene and restore renders to be without
+            the presence of the intervening medium.
+
+            We show that the underwater image formation helps learn scene structure, with better depth maps, as well
+            as show that our improvements maintain the significant computational improvements afforded by leveraging
+            a 3D Gaussian representation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Color restoration</h2>
+    <p>
+      Here we highlight the ability of <span class="dmethod">SeaSplat</span> to render novel views while removing the medium and restoring the true color of the underlying scene. <br><br>
+    </p>
+
+    <div class="tabs-widget">
+      <div class="tabs is-centered">
+        <ul class="is-marginless">
+          <li><a>Reference</a></li>
+          <li><a>SeaThru-NeRF Comparison</a></li>
+        </ul>
+      </div>
+      <div class="tabs-content">
+        <!-- Begin reference. -->
+        <div>
+          <div class="tabs-widget">
+            <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+              <ul class="is-marginless">
+                <li><a>Curasao</a></li>
+                <li><a>Japanese Gardens</a></li>
+                <li><a>Panama</a></li>
+                <li><a>IUI3</a></li>
+                <li><a>SimFog Garden</a></li>
+                <li><a>SimWater Garden</a></li>
+                <li><a>Salt Pond</a></li>
+              </ul>
+            </div>
+            <div class="tabs-content">
+              <!-- Comment. -->
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/Curasao.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/JapaneseGarden.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/Panama.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/IUI3.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/simfog.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/simwater.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaSplat (with water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_seasplat/saltpond.mp4"></video>
+                <canvas></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End reference. -->
+        <!-- Begin stn. -->
+        <div>
+          <div class="tabs-widget">
+            <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+              <ul class="is-marginless">
+                <li><a>Curasao</a></li>
+                <li><a>Japanese Gardens</a></li>
+                <li><a>Panama</a></li>
+                <li><a>IUI3</a></li>
+                <li><a>SimFog Garden</a></li>
+                <li><a>SimWater Garden</a></li>
+                <li><a>Salt Pond</a></li>
+              </ul>
+            </div>
+            <div class="tabs-content">
+              <!-- Comment. -->
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/Curasao.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/JapaneseGarden.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/Panama.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/IUI3.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/simfog.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/simwater.mp4"></video>
+                <canvas></canvas>
+              </div>
+              <div class="video-comparison" data-label="SeaThru-NeRF (no water)" data-label2="SeaSplat (no water)">
+                <video class="video" width=100% loop playsinline muted
+                  src="./static/videos/mediumremoval_stn_seasplat/saltpond.mp4"></video>
+                <canvas></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End stn. -->
+      </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">In-medium novel view synthesis</h2>
+    <p>
+      Here we display side-by-side videos comparing 3D Gaussian Splatting and <span class="dmethod">SeaSplat</span> in rendering underwater scenes with the medium present. <br><br>
+    </p>
+    <div class="tabs-widget">
+      <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+        <ul class="is-marginless">
+          <li><a>Curasao</a></li>
+          <li><a>Japanese Gardens</a></li>
+          <li><a>Panama</a></li>
+          <li><a>IUI3</a></li>
+          <li><a>SimFog Garden</a></li>
+          <li><a>SimWater Garden</a></li>
+          <li><a>Salt Pond</a></li>
+        </ul>
+      </div>
+      <div class="tabs-content">
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/Curasao.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/JapaneseGarden.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/Panama.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/IUI3.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/simfog.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/simwater.mp4"></video>
+            <canvas></canvas>
+          </div>
+          <div class="video-comparison" data-label="3DGS" data-label2="SeaSplat with Water">
+            <video class="video" width=100% loop playsinline muted
+              src="./static/videos/nvs_3dgs_seasplat/saltpond.mp4"></video>
+            <canvas></canvas>
+          </div>
+      </div>
+      <br>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{yang2024seasplat,
+  author    = {Yang, Daniel and Leonard, John J. and Girdhar, Yogesh},
+  title     = {SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model},
+  journal   = {arxiv},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+      <div class="columns is-centered">
+          <div class="column">
+              <div class="content has-text-centered">
+                  <p>
+                      Website template based on the project page for <a href="https://dorverbin.github.io/nerf-casting/">NeRF-Casting</a>.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+
+</body>
+</html>
